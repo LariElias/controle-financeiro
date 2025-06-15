@@ -14,7 +14,13 @@ defmodule ControleFinanceiroWeb.TransactionJSON do
       valor: transaction.valor,
       tipo: transaction.tipo,
       data: transaction.data,
-      user_id: transaction.user_id
+      user_id: transaction.user_id,
+      tags: Enum.map(transaction.tags || [], fn tag ->
+        %{
+          id: tag.id,
+          nome: tag.nome
+        }
+      end)
     }
   end
 end
